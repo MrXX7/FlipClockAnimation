@@ -11,6 +11,7 @@
 		ADE9F6EB2C09110F00C6CAA1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE9F6EA2C09110F00C6CAA1 /* ContentView.swift */; };
 		ADE9F6ED2C09111100C6CAA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADE9F6EC2C09111100C6CAA1 /* Assets.xcassets */; };
 		ADE9F6F12C09111100C6CAA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADE9F6F02C09111100C6CAA1 /* Preview Assets.xcassets */; };
+		ADE9F6F92C0911F100C6CAA1 /* FlipClockTextEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE9F6F82C0911F000C6CAA1 /* FlipClockTextEffect.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		ADE9F6EC2C09111100C6CAA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ADE9F6EE2C09111100C6CAA1 /* FlipClockAnimation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlipClockAnimation.entitlements; sourceTree = "<group>"; };
 		ADE9F6F02C09111100C6CAA1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		ADE9F6F82C0911F000C6CAA1 /* FlipClockTextEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipClockTextEffect.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +54,9 @@
 		ADE9F6E72C09110F00C6CAA1 /* FlipClockAnimation */ = {
 			isa = PBXGroup;
 			children = (
-				ADE9F6E82C09110F00C6CAA1 /* FlipClockAnimationApp.swift */,
+				ADE9F6F72C0911AD00C6CAA1 /* Helpers */,
 				ADE9F6EA2C09110F00C6CAA1 /* ContentView.swift */,
+				ADE9F6E82C09110F00C6CAA1 /* FlipClockAnimationApp.swift */,
 				ADE9F6EC2C09111100C6CAA1 /* Assets.xcassets */,
 				ADE9F6EE2C09111100C6CAA1 /* FlipClockAnimation.entitlements */,
 				ADE9F6EF2C09111100C6CAA1 /* Preview Content */,
@@ -67,6 +70,14 @@
 				ADE9F6F02C09111100C6CAA1 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		ADE9F6F72C0911AD00C6CAA1 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				ADE9F6F82C0911F000C6CAA1 /* FlipClockTextEffect.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADE9F6EB2C09110F00C6CAA1 /* ContentView.swift in Sources */,
+				ADE9F6F92C0911F100C6CAA1 /* FlipClockTextEffect.swift in Sources */,
 				ADE9F6E92C09110F00C6CAA1 /* FlipClockAnimationApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
