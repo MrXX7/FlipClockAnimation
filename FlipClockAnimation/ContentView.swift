@@ -9,13 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            VStack {
+                FlipClockTextEffect(size: CGSize(width: 100, height: 150),
+                                    fontSize: 70,
+                                    cornerRadius: 10,
+                                    foreground: .white,
+                                    background: .red)
+            }
+            .padding()
         }
-        .padding()
     }
 }
 

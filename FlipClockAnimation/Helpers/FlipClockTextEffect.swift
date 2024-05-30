@@ -8,11 +8,31 @@
 import SwiftUI
 
 struct FlipClockTextEffect: View {
+    /// Config
+    var size: CGSize
+    var fontSize: CGFloat
+    var cornerRadius: CGFloat
+    var foreground: Color
+    var background: Color
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        let halfHeight = size.height * 0.5
+        
+        ZStack {
+            UnevenRoundedRectangle(topLeadingRadius: cornerRadius, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: cornerRadius)
+                .fill(background.gradient.shadow(.inner(radius: 1)))
+                .frame(height: halfHeight)
+                .frame(maxHeight: .infinity, alignment: .top)
+            
+            UnevenRoundedRectangle(topLeadingRadius: 0, bottomLeadingRadius: cornerRadius, bottomTrailingRadius: cornerRadius, topTrailingRadius: 0)
+                .fill(background.gradient.shadow(.inner(radius: 1)))
+                .frame(height: halfHeight)
+                .frame(maxHeight: .infinity, alignment: .bottom)
+        }
+        .frame(width: size.width, height: size.height)
     }
 }
 
 #Preview {
-    FlipClockTextEffect()
+    ContentView()
 }
