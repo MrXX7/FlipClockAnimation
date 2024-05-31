@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FlipClockTextEffect: View {
     /// Config
+    var value: Int
     var size: CGSize
     var fontSize: CGFloat
     var cornerRadius: CGFloat
@@ -22,6 +23,10 @@ struct FlipClockTextEffect: View {
             UnevenRoundedRectangle(topLeadingRadius: cornerRadius, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: cornerRadius)
                 .fill(background.gradient.shadow(.inner(radius: 1)))
                 .frame(height: halfHeight)
+                .overlay(alignment: .top) {
+                    Text("\(value)")
+                        .font(.system(size: fontSize).bold())
+                }
                 .frame(maxHeight: .infinity, alignment: .top)
             
             UnevenRoundedRectangle(topLeadingRadius: 0, bottomLeadingRadius: cornerRadius, bottomTrailingRadius: cornerRadius, topTrailingRadius: 0)
