@@ -28,6 +28,10 @@ struct FlipClockTextEffect: View {
                         .frame(width: size.width, height: size.height)
                 }
                 .clipped()
+                .rotation3DEffect(
+                    .init(degrees: 45),
+                     axis: (x: 1.0, y: 0.0, z: 0.0)
+                )
                 .frame(maxHeight: .infinity, alignment: .top)
             
             UnevenRoundedRectangle(topLeadingRadius: 0, bottomLeadingRadius: cornerRadius, bottomTrailingRadius: cornerRadius, topTrailingRadius: 0)
