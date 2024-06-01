@@ -16,6 +16,8 @@ struct FlipClockTextEffect: View {
     var foreground: Color
     var background: Color
     
+    @State private var nextValue: Int = 1
+    @State private var currentValue: Int = 0
     var body: some View {
         let halfHeight = size.height * 0.5
         
@@ -24,13 +26,25 @@ struct FlipClockTextEffect: View {
                 .fill(background.gradient.shadow(.inner(radius: 1)))
                 .frame(height: halfHeight)
                 .overlay(alignment: .top) {
-                    TextView(value)
+                    TextView(nextValue)
+                        .frame(width: size.width, height: size.height)
+                }
+                .clipped()
+                .frame(maxHeight: .infinity, alignment: .top)
+            
+            UnevenRoundedRectangle(topLeadingRadius: cornerRadius, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: cornerRadius)
+                .fill(background.gradient.shadow(.inner(radius: 1)))
+                .frame(height: halfHeight)
+                .overlay(alignment: .top) {
+                    TextView(currentValue)
                         .frame(width: size.width, height: size.height)
                 }
                 .clipped()
                 .rotation3DEffect(
-                    .init(degrees: 45),
-                     axis: (x: 1.0, y: 0.0, z: 0.0)
+                    .init(degrees: -165),
+                     axis: (x: 1.0, y: 0.0, z: 0.0),
+                    anchor: .bottom,
+                    perspective: 0.4
                 )
                 .frame(maxHeight: .infinity, alignment: .top)
             
@@ -38,7 +52,7 @@ struct FlipClockTextEffect: View {
                 .fill(background.gradient.shadow(.inner(radius: 1)))
                 .frame(height: halfHeight)
                 .overlay(alignment: .bottom) {
-                    TextView(value)
+                    TextView(currentValue)
                         .frame(width: size.width, height: size.height)
                 }
                 .clipped()
