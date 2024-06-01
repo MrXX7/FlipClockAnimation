@@ -24,17 +24,29 @@ struct FlipClockTextEffect: View {
                 .fill(background.gradient.shadow(.inner(radius: 1)))
                 .frame(height: halfHeight)
                 .overlay(alignment: .top) {
-                    Text("\(value)")
-                        .font(.system(size: fontSize).bold())
+                    TextView(value)
+                        .frame(width: size.width, height: size.height)
                 }
+                .clipped()
                 .frame(maxHeight: .infinity, alignment: .top)
             
             UnevenRoundedRectangle(topLeadingRadius: 0, bottomLeadingRadius: cornerRadius, bottomTrailingRadius: cornerRadius, topTrailingRadius: 0)
                 .fill(background.gradient.shadow(.inner(radius: 1)))
                 .frame(height: halfHeight)
+                .overlay(alignment: .bottom) {
+                    TextView(value)
+                        .frame(width: size.width, height: size.height)
+                }
+                .clipped()
                 .frame(maxHeight: .infinity, alignment: .bottom)
         }
         .frame(width: size.width, height: size.height)
+    }
+    @ViewBuilder
+    func TextView(_ value: Int) -> some View {
+        Text("\(value)")
+            .font(.system(size: fontSize).bold())
+            .foregroundStyle(foreground)
     }
 }
 
