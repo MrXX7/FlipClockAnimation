@@ -47,6 +47,7 @@ struct FlipClockTextEffect: View {
                     perspective: 0.4
                 )
                 .frame(maxHeight: .infinity, alignment: .top)
+                .zIndex(10)
             
             UnevenRoundedRectangle(topLeadingRadius: 0, bottomLeadingRadius: cornerRadius, bottomTrailingRadius: cornerRadius, topTrailingRadius: 0)
                 .fill(background.gradient.shadow(.inner(radius: 1)))
@@ -65,6 +66,34 @@ struct FlipClockTextEffect: View {
         Text("\(value)")
             .font(.system(size: fontSize).bold())
             .foregroundStyle(foreground)
+    }
+}
+
+fileprivate struct RotationModifier: ViewModifier, Animatable {
+    var rotation: CGFloat
+    var currentValue: Int
+    var nextValue: Int
+    var fontSize: CGFloat
+    var foreground: Color
+    var animatableData: CGFloat {
+        get { rotation }
+        set { rotation = newValue }
+    }
+    
+    func body(content: Content) -> some View {
+        content
+            .overlay(alignment: .top) {
+                if -rotation > 90 {
+                    Text("\(nextValue)")
+                        .font(.system(size: fontSize).bold())
+                        .foregroundStyle(foreground)
+                        .scaleEffect(x: 1, y: -1)
+                } else {
+                    Text("\(currentValue)")
+                        .font(.system(size: fontSize).bold())
+                        .foregroundStyle(foreground)
+                }
+            }
     }
 }
 
