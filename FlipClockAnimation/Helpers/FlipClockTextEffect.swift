@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FlipClockTextEffect: View {
     /// Config
-    var value: Int
+   @Binding var value: Int
     var size: CGSize
     var fontSize: CGFloat
     var cornerRadius: CGFloat
@@ -25,17 +25,18 @@ struct FlipClockTextEffect: View {
         
         ZStack {
             UnevenRoundedRectangle(topLeadingRadius: cornerRadius, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: cornerRadius)
-                .fill(background.gradient.shadow(.inner(radius: 1)))
+                .fill(background.shadow(.inner(radius: 1)))
                 .frame(height: halfHeight)
                 .overlay(alignment: .top) {
                     TextView(nextValue)
                         .frame(width: size.width, height: size.height)
+                        .drawingGroup()
                 }
                 .clipped()
                 .frame(maxHeight: .infinity, alignment: .top)
             
             UnevenRoundedRectangle(topLeadingRadius: cornerRadius, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: cornerRadius)
-                .fill(background.gradient.shadow(.inner(radius: 1)))
+                .fill(background.shadow(.inner(radius: 1)))
                 .frame(height: halfHeight)
                 .modifier(
                     RotationModifier(
@@ -52,17 +53,19 @@ struct FlipClockTextEffect: View {
                     .init(degrees: rotation),
                      axis: (x: 1.0, y: 0.0, z: 0.0),
                     anchor: .bottom,
+                    anchorZ: 0,
                     perspective: 0.4
                 )
                 .frame(maxHeight: .infinity, alignment: .top)
                 .zIndex(10)
             
             UnevenRoundedRectangle(topLeadingRadius: 0, bottomLeadingRadius: cornerRadius, bottomTrailingRadius: cornerRadius, topTrailingRadius: 0)
-                .fill(background.gradient.shadow(.inner(radius: 1)))
+                .fill(background.shadow(.inner(radius: 1)))
                 .frame(height: halfHeight)
                 .overlay(alignment: .bottom) {
                     TextView(currentValue)
                         .frame(width: size.width, height: size.height)
+                        .drawingGroup()
                 }
                 .clipped()
                 .frame(maxHeight: .infinity, alignment: .bottom)
@@ -79,10 +82,10 @@ struct FlipClockTextEffect: View {
             guard oldValue != newValue else { return }
             
             withAnimation(.easeInOut(duration: animationDuration), completionCriteria: .logicallyComplete) {
-                rotation = 180
+                rotation = -180
             } completion: {
                 rotation = 0
-                currentValue = newValue
+                currentValue = value
             }
         }
     }
@@ -91,6 +94,7 @@ struct FlipClockTextEffect: View {
         Text("\(value)")
             .font(.system(size: fontSize).bold())
             .foregroundStyle(foreground)
+            .lineLimit(1)
     }
 }
 
@@ -116,14 +120,17 @@ fileprivate struct RotationModifier: ViewModifier, Animatable {
                             .foregroundStyle(foreground)
                             .scaleEffect(x: 1, y: -1)
                             .transition(.identity)
+                            .lineLimit(1)
                     } else {
                         Text("\(currentValue)")
                             .font(.system(size: fontSize).bold())
                             .foregroundStyle(foreground)
                             .transition(.identity)
+                            .lineLimit(1)
                     }
                 }
                 .frame(width: size.width, height: size.height)
+                .drawingGroup()
             }
     }
 }
